@@ -21,6 +21,8 @@ public class TurnTheNumber {
 			StringBuilder stringBuilder = new StringBuilder(convertNumber);
 			System.out.println(stringBuilder.reverse().toString());
 
+			// third way
+
 		}
 	}
 }
