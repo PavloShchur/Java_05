@@ -1,4 +1,4 @@
-package buying;
+package shop_bag;
 
 import java.util.ArrayList;
 import java.util.List;

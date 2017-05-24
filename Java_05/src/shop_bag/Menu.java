@@ -1,4 +1,4 @@
-package buying;
+package shop_bag;
 
 public class Menu {
 	public void roleOfMan() {
