@@ -74,8 +74,16 @@ public class Methods {
 
 	public static void buyGood() {
 		List<String> shopBag = new ArrayList<>();
-		showGoodsOfAllDepartments();
 		System.out.println("Enter title of good which you want to buy.");
+		String wantedProduct = s.next();
+		for (int i = 0; i < shopMap.size(); i++) {
+			if (wantedProduct.equalsIgnoreCase(shopMap.get(i).toString())) {
+				shopBag.add(shopMap.get(i).toString());
+				shopMap.remove(shopMap.get(i).toString());
+				System.out.println(shopBag);
+			}
+
+		}
 
 	}
 
