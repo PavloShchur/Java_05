@@ -10,6 +10,8 @@ public class Main {
 	public static void main(String[] args) {
 		Methods methods = new Methods();
 		boolean work = true;
+		boolean work2 = true;
+		boolean work3 = true;
 		Menu menu = new Menu();
 		menu.roleOfMan();
 		while (work) {
@@ -17,38 +19,41 @@ public class Main {
 			switch (choice) {
 			case "1":
 				menu.adminMenu();
-				String adminChoice = s.next();
-				switch (adminChoice) {
-				case "1":
-					methods.addDepartment();
-					break;
-				case "2":
-					methods.deleteDepartment();
-					break;
-				case "3":
-					System.exit(0);
-					break;
-				default:
-					break;
+				while (work2) {
+					String adminChoice = s.next();
+					switch (adminChoice) {
+					case "1":
+						methods.addDepartment();
+						break;
+					case "2":
+						methods.deleteDepartment();
+						break;
+					case "3":
+						menu.roleOfMan();
+						break;
+					}
 				}
 			case "2":
 				menu.clientMenu();
-				String clientChoice = s.next();
-				switch (clientChoice) {
-				case "1":
-					methods.showGoodsOfDepartment();
-					break;
-				case "2":
-					methods.showGoodsOfAllDepartments();
-					break;
-				case "3":
-
-					break;
-
-				default:
-					break;
+				while (work3) {
+					String clientChoice = s.next();
+					switch (clientChoice) {
+					case "1":
+						methods.showGoodsOfDepartment();
+						break;
+					case "2":
+						methods.showGoodsOfAllDepartments();
+						break;
+					case "3":
+						methods.buyGood();
+						break;
+					case "4":
+						menu.roleOfMan();
+						break;
+					default:
+						break;
+					}
 				}
-				break;
 			case "3":
 				System.exit(0);
 				break;

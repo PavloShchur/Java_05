@@ -62,7 +62,6 @@ public class Methods {
 			} else {
 				System.out.println("Sorry, but we don't have such a department.");
 			}
-
 		}
 	}
 
@@ -80,9 +79,8 @@ public class Methods {
 			if (wantedProduct.equalsIgnoreCase(shopMap.get(i).toString())) {
 				shopBag.add(shopMap.get(i).toString());
 				shopMap.remove(shopMap.get(i).toString());
-				System.out.println(shopBag);
+				System.out.println("Your goods are " + shopBag);
 			}
-
 		}
 
 	}
