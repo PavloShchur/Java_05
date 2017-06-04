@@ -1,6 +1,6 @@
 package programmingBasics;
 
-public class BubleSort {
+public class BubleSort_1 {
 
 	public static void main(String[] args) {
 		int[] array = { 1, 58, 47, 5, 12, 5 };

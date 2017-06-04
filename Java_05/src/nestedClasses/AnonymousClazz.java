@@ -4,6 +4,8 @@ interface Message {
 	String greetings();
 }
 
+///////////////////////////////////////////////////////////////
+
 abstract class Anon {
 	public abstract void someMethod();
 
@@ -13,6 +15,8 @@ abstract class Anon {
 
 	public abstract void someMethod3();
 }
+
+//////////////////////////////////////////////////////////////
 
 public class AnonymousClazz {
 	public void innerMethod() {
@@ -40,14 +44,16 @@ public class AnonymousClazz {
 
 			}
 		};
-		// from abstract class you do not have to use all methods
+		// from abstract class you do not need to use all methods
 		anon.someMethod();
 	}
 
+	/////////////////////////////////////////////////////////////
 	public void showMessage(Message message) {
 		System.out.println(message.greetings() + "Good day");
 	}
 
+	////////////////////////////////////////////////////////////
 	public void innerClassAsArgument() {
 		AnonymousClazz anonymousClazz = new AnonymousClazz();
 		anonymousClazz.showMessage(new Message() {
@@ -58,5 +64,6 @@ public class AnonymousClazz {
 			}
 		});
 	}
+	////////////////////////////////////////////////////////////
 
 }

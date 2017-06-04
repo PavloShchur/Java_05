@@ -3,6 +3,7 @@ package nestedClasses;
 public class Main {
 
 	public static void main(String[] args) {
+
 		// nested class
 		InnerClazz innerClazz = new InnerClazz();
 		innerClazz.takeAWord();
