@@ -1,4 +1,4 @@
-package inner_classes;
+package innerClasses;
 
 public class My_class2 {
 

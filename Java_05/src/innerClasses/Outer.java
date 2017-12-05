@@ -1,4 +1,4 @@
-package inner_classes;
+package innerClasses;
 
 public class Outer {
 	static class Nested_Demo {
