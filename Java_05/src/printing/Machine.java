@@ -1,6 +1,6 @@
 package printing;
 
-public class Machine {
+public class Machine implements MachineInterface {
 
 	protected boolean isOn;
 
@@ -11,10 +11,16 @@ public class Machine {
 
 	public void turnOn() {
 		isOn = true;
+		System.out.println("Machine is on!");
 	}
 
 	public void turnOff() {
 		isOn = false;
+	}
+
+	@Override
+	public boolean isOn() {
+		return isOn;
 	}
 
 }

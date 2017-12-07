@@ -1,4 +1,4 @@
-package java_net;
+package javaNet;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -13,15 +13,15 @@ public class HttpURLDemo {
 		URL hp = new URL("http://www.google.com");
 		HttpURLConnection hpCon = (HttpURLConnection) hp.openConnection();
 
-		System.out.println("Метод запиту: " + hpCon.getRequestMethod());
-		System.out.println("Код відповіді: " + hpCon.getResponseCode());
-		System.out.println("Відповідь: " + hpCon.getResponseMessage());
+		System.out.println("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: " + hpCon.getRequestMethod());
+		System.out.println("пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: " + hpCon.getResponseCode());
+		System.out.println("ВіпїЅпїЅпїЅпїЅпїЅпїЅ: " + hpCon.getResponseMessage());
 
 		Map<String, List<String>> hdrMap = hpCon.getHeaderFields();
 		Set<String> hdrField = hdrMap.keySet();
-		System.out.println("/nДалі іде заголовок: ");
+		System.out.println("/nпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ");
 		for (String k : hdrField) {
-			System.out.println("Ключ: " + k + " Значення: " + hdrMap.get(k));
+			System.out.println("пїЅпїЅпїЅпїЅ: " + k + " пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " + hdrMap.get(k));
 		}
 
 	}

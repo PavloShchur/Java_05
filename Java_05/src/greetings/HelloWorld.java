@@ -1,15 +1,18 @@
 package greetings;
 
+import printing.BWCartridge;
+import printing.ColorCartridge;
 import printing.Printer;
 
 public class HelloWorld {
 
 	public static void main(String[] args) {
 
-		Printer myPrimter = new Printer(true, "My Printer");
-		myPrimter.loadPaper(3);
-		myPrimter.print(4);
+		// Printer<ColorCartridge> printer = new Printer<ColorCartridge>(true,
+		// "MY PRINTER", new ColorCartridge());
+		Printer<BWCartridge> printer = new Printer<BWCartridge>(true, "MY PRINTER", new BWCartridge());
 
+		printer.printUsingCartridge(new ColorCartridge(), "Hi!");
 	}
 
 }
