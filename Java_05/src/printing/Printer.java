@@ -1,10 +1,9 @@
 package printing;
 
 public class Printer<T> implements MachineInterface {
-
 	private String modelNumber;
 	private PaperTray paperTray = new PaperTray();
-	Machine machine;
+	private Machine machine;
 	private T cartridge;
 
 	public Printer(boolean isOn, String modelNumber, T cartridge) {
@@ -13,43 +12,36 @@ public class Printer<T> implements MachineInterface {
 		this.cartridge = cartridge;
 	}
 
-	public <U> void printUsingCartridge(U cartridge, String message) {
+	public void turnOn() {
+		System.out.println("Warming up printer");
+		machine.turnOn();
+	}
+
+	public <U extends CartridgeInterface> void printUsingCartridge(U cartridge, String message) {
 		System.out.println(cartridge.toString());
 		System.out.println(message);
 		System.out.println(cartridge.toString());
 	}
 
-	@Override
-	public void turnOn() {
-		System.out.println("Warming up printer.");
-		machine.turnOn();
-	}
-
 	public void print(int copies) {
+		// System.out.println(cartridge.getFillPercentage());
 
-		System.out.println(cartridge.toString());
-
-		String status = "";
-		String textToPrint = "";
-
+		String onStatus = "";
 		if (machine.isOn())
-			status = " is on!";
+			onStatus = " is On!";
 		else
-			status = " is off";
+			onStatus = " is Off!";
 
-		textToPrint = modelNumber + status;
+		String textToPrint = modelNumber + onStatus;
 
-		// for (int i = 0; i < copies; i++) {
 		while (copies > 0 && !paperTray.isEmpty()) {
 			System.out.println(textToPrint);
 			copies--;
 			paperTray.usePage();
 		}
 
-		if (paperTray.isEmpty()) {
+		if (paperTray.isEmpty())
 			System.out.println("Load more paper!");
-		}
-
 	}
 
 	public void printColors() {
@@ -57,10 +49,11 @@ public class Printer<T> implements MachineInterface {
 
 		for (String currentColor : colors) {
 			if ("Green".equals(currentColor))
-				// break;
 				continue;
+
 			System.out.println(currentColor);
 		}
+
 	}
 
 	private void print(String text) {
@@ -71,6 +64,10 @@ public class Printer<T> implements MachineInterface {
 		return modelNumber;
 	}
 
+	public T getCartridge() {
+		return cartridge;
+	}
+
 	public void loadPaper(int count) {
 		paperTray.addPaper(count);
 	}
@@ -78,12 +75,10 @@ public class Printer<T> implements MachineInterface {
 	@Override
 	public void turnOff() {
 		machine.turnOff();
-
 	}
 
 	@Override
 	public boolean isOn() {
-
 		return machine.isOn();
 	}
 }
