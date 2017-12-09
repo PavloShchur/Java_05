@@ -1,15 +1,19 @@
 package printing;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Printer<T> implements MachineInterface {
+public class Printer<T extends CartridgeInterface> implements MachineInterface {
 	private String modelNumber;
 	private PaperTray paperTray = new PaperTray();
 	private Machine machine;
 	private T cartridge;
 
-	private List<Page> pages = new ArrayList<Page>();
+	private Map<Integer, Page> numberOfPage2Page = new HashMap<>();
 
 	public Printer(boolean isOn, String modelNumber, T cartridge) {
 		machine = new Machine(isOn);
@@ -32,17 +36,21 @@ public class Printer<T> implements MachineInterface {
 
 		// checkCopies(copies);
 
+		int pageNumber = 1;
+
 		String onStatus = "";
 		if (machine.isOn())
 			onStatus = " is On!";
 		else
 			onStatus = " is Off!";
 
-		String textToPrint = modelNumber + onStatus;
+		String textToPrint = getTextFromFile();
 
 		while (copies > 0 && !paperTray.isEmpty()) {
-			pages.add(new Page(textToPrint));
+
+			numberOfPage2Page.put(pageNumber, new Page(textToPrint + " : " + pageNumber));
 			copies--;
+			pageNumber++;
 			paperTray.usePage();
 		}
 
@@ -50,10 +58,39 @@ public class Printer<T> implements MachineInterface {
 			System.out.println("Load more paper!");
 	}
 
-	public void outputPages() {
-		for (Page pageItem : pages) {
-			System.out.println(pageItem.getPrintedText());
+	private String getTextFromFile() {
+		FileReader reader = null;
+		BufferedReader bufferedReader = null;
+		String allText = null;
+		try {
+			reader = new FileReader("D:\\БІБЛІОТЕКА\\IT\\Java\\Java_05\\Commit_Java_05\\Java_05\\Hello.txt");
+			bufferedReader = new BufferedReader(reader);
+
+			String line;
+
+			while ((line = bufferedReader.readLine()) != null) {
+				allText += line + "\n";
+			}
+
+			return allText;
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (reader != null)
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 		}
+		return null;
+	}
+
+	public void outputPage(int pageNumber) {
+		System.out.println(numberOfPage2Page.get(pageNumber).getPrintedText());
 	}
 
 	public void printColors() {

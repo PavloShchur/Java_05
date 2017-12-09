@@ -12,4 +12,10 @@ public class BWCartridge implements CartridgeInterface {
 		return "50%";
 	}
 
+	@Override
+	public String printColor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -1,6 +1,5 @@
 package greetings;
 
-import printing.BWCartridge;
 import printing.CartridgeInterface;
 import printing.ColorCartridge;
 import printing.Printer;
@@ -9,18 +8,11 @@ public class HelloWorld {
 
 	public static void main(String[] args) throws IllegalAccessException {
 
-		// Printer<ColorCartridge> printer = new Printer<ColorCartridge>(true,
-		// "MY PRINTER", new ColorCartridge());
-		Printer<BWCartridge> printer = new Printer<BWCartridge>(true, "MY PRINTER", new BWCartridge());
-		Printer<ColorCartridge> printer2 = new Printer<ColorCartridge>(true, "MY PRINTER", new ColorCartridge());
-
-		// printer.printUsingCartridge(new ColorCartridge(), "Hi!");
+		Printer<ColorCartridge> printer = new Printer<ColorCartridge>(true, "MY PRINTER", ColorCartridge.GREEN);
 
 		printer.loadPaper(5);
-		printer.print(5);
-		printer.outputPages();
-
-		printOne(printer);
+		printer.print(3);
+		printer.outputPage(2);
 
 	}
 
