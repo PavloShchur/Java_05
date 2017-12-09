@@ -1,10 +1,15 @@
 package printing;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Printer<T> implements MachineInterface {
 	private String modelNumber;
 	private PaperTray paperTray = new PaperTray();
 	private Machine machine;
 	private T cartridge;
+
+	private List<Page> pages = new ArrayList<Page>();
 
 	public Printer(boolean isOn, String modelNumber, T cartridge) {
 		machine = new Machine(isOn);
@@ -23,8 +28,9 @@ public class Printer<T> implements MachineInterface {
 		System.out.println(cartridge.toString());
 	}
 
-	public void print(int copies) {
-		// System.out.println(cartridge.getFillPercentage());
+	public void print(int copies) throws IllegalAccessException {
+
+		// checkCopies(copies);
 
 		String onStatus = "";
 		if (machine.isOn())
@@ -35,13 +41,19 @@ public class Printer<T> implements MachineInterface {
 		String textToPrint = modelNumber + onStatus;
 
 		while (copies > 0 && !paperTray.isEmpty()) {
-			System.out.println(textToPrint);
+			pages.add(new Page(textToPrint));
 			copies--;
 			paperTray.usePage();
 		}
 
 		if (paperTray.isEmpty())
 			System.out.println("Load more paper!");
+	}
+
+	public void outputPages() {
+		for (Page pageItem : pages) {
+			System.out.println(pageItem.getPrintedText());
+		}
 	}
 
 	public void printColors() {
@@ -74,11 +86,18 @@ public class Printer<T> implements MachineInterface {
 
 	@Override
 	public void turnOff() {
+		System.out.println("Machine is turn off!!!");
 		machine.turnOff();
 	}
 
 	@Override
 	public boolean isOn() {
 		return machine.isOn();
+	}
+
+	public void checkCopies(int copies) throws IllegalAccessException {
+		if (copies <= 0)
+			throw new IllegalAccessException("Cannot print less than 1 copy.");
+
 	}
 }

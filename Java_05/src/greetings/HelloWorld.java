@@ -7,7 +7,7 @@ import printing.Printer;
 
 public class HelloWorld {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IllegalAccessException {
 
 		// Printer<ColorCartridge> printer = new Printer<ColorCartridge>(true,
 		// "MY PRINTER", new ColorCartridge());
@@ -15,6 +15,10 @@ public class HelloWorld {
 		Printer<ColorCartridge> printer2 = new Printer<ColorCartridge>(true, "MY PRINTER", new ColorCartridge());
 
 		// printer.printUsingCartridge(new ColorCartridge(), "Hi!");
+
+		printer.loadPaper(5);
+		printer.print(5);
+		printer.outputPages();
 
 		printOne(printer);
 
