@@ -4,9 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+@PrintingDevice(defaultPrintMethod = "print", defaultNumberOfCopies = 5)
 public class Printer<T extends CartridgeInterface> implements MachineInterface {
 	private String modelNumber;
 	private PaperTray paperTray = new PaperTray();
@@ -26,14 +28,18 @@ public class Printer<T extends CartridgeInterface> implements MachineInterface {
 		machine.turnOn();
 	}
 
-	public <U extends CartridgeInterface> void printUsingCartridge(U cartridge, String message) {
-		System.out.println(cartridge.toString());
+	public synchronized <U extends CartridgeInterface> void printUsingCartridge(U cartridge, String message) {
+		System.out.println("Entered: " + Thread.currentThread().getId());
+		// System.out.println(cartridge.toString());
 		System.out.println(message);
-		System.out.println(cartridge.toString());
+		// System.out.println(cartridge.toString());
+		System.out.println("Exited: " + Thread.currentThread().getId());
+
 	}
 
+	@Deprecated
 	public void print(int copies) throws IllegalAccessException {
-
+		System.out.println("Depereceted");
 		// checkCopies(copies);
 
 		int pageNumber = 1;
@@ -62,13 +68,15 @@ public class Printer<T extends CartridgeInterface> implements MachineInterface {
 		FileReader reader = null;
 		BufferedReader bufferedReader = null;
 		String allText = null;
+		CapitalizationReader capReader = null;
 		try {
-			reader = new FileReader("D:\\БІБЛІОТЕКА\\IT\\Java\\Java_05\\Commit_Java_05\\Java_05\\Hello.txt");
+			reader = new FileReader("D:\\БІБЛІОТЕКА\\IT\\Java\\Java_05\\Commit_Java_05\\Java_05\\input.txt");
 			bufferedReader = new BufferedReader(reader);
+			capReader = new CapitalizationReader(bufferedReader);
 
 			String line;
 
-			while ((line = bufferedReader.readLine()) != null) {
+			while ((line = capReader.readLine()) != null) {
 				allText += line + "\n";
 			}
 
@@ -79,9 +87,9 @@ public class Printer<T extends CartridgeInterface> implements MachineInterface {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			if (reader != null)
+			if (capReader != null)
 				try {
-					reader.close();
+					capReader.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -90,7 +98,17 @@ public class Printer<T extends CartridgeInterface> implements MachineInterface {
 	}
 
 	public void outputPage(int pageNumber) {
-		System.out.println(numberOfPage2Page.get(pageNumber).getPrintedText());
+		System.out.println("Depereceted");
+		PrintWriter printWriter = null;
+		try {
+			printWriter = new PrintWriter("D:\\БІБЛІОТЕКА\\IT\\Java\\Java_05\\Commit_Java_05\\Java_05\\write.txt");
+			printWriter.println(numberOfPage2Page.get(pageNumber).getPrintedText());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (printWriter != null)
+				printWriter.close();
+		}
 	}
 
 	public void printColors() {
