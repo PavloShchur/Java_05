@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Supplier {
-	private final String name;
-	private final int weight;
+
+	private String name;
+	private int weight;
 
 	private final List<Product> products = new ArrayList<>();
 
@@ -17,6 +18,11 @@ public class Supplier {
 		super();
 		this.name = name;
 		this.weight = weight;
+	}
+
+	public Supplier(String name) {
+		super();
+		this.name = name;
 	}
 
 	public String getName() {
