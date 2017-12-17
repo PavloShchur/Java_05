@@ -30,4 +30,11 @@ public class CalculatorTest {
 		int result = calculator.evalute("1 - 3 + 2 + 4");
 		assertEquals(4, result);
 	}
+
+	@Test
+	public void chechAdd() {
+		int result = calculator.evalute("8000000 - 7000000");
+		assertEquals(1000000, result);
+	}
+
 }

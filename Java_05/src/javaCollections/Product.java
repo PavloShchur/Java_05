@@ -11,10 +11,18 @@ public class Product {
 
 	public static final Comparator<Product> BY_WEIGHT = comparing(Product::getWeight);
 
-	private final String name;
-	private final int weight;
+	private int id;
+	private String name;
+	private int weight;
 
 	public Product(String name, int weight) {
+		super();
+		this.name = name;
+		this.weight = weight;
+	}
+
+	public Product(final int id, final String name, final int weight) {
+		this.id = id;
 		this.name = name;
 		this.weight = weight;
 	}
@@ -27,9 +35,12 @@ public class Product {
 		return weight;
 	}
 
-	@Override
+	public int getId() {
+		return id;
+	}
+
 	public String toString() {
-		return "Product{" + "name='" + name + '\'' + ", weight=" + weight + '}';
+		return "Product{" + "id=" + id + ", name='" + name + '\'' + ", weight=" + weight + '}';
 	}
 
 	public boolean equals(final Object o) {
@@ -38,10 +49,11 @@ public class Product {
 
 		final Product product = (Product) o;
 
-		return Objects.equals(weight, product.weight) && Objects.equals(name, product.name);
+		return Objects.equals(id, product.id) && Objects.equals(weight, product.weight)
+				&& Objects.equals(name, product.name);
 	}
 
 	public int hashCode() {
-		return Objects.hash(name, weight);
+		return Objects.hash(id, name, weight);
 	}
 }
