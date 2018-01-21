@@ -1,3 +1,4 @@
+package com.pavlo.stringAndEnum;
 // package stringAndEnum;
 //
 // public enum Months {

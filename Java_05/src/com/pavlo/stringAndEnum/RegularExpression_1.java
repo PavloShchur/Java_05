@@ -1,4 +1,4 @@
-package stringAndEnum;
+package com.pavlo.stringAndEnum;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;

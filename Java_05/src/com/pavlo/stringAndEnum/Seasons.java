@@ -1,4 +1,4 @@
-package stringAndEnum;
+package com.pavlo.stringAndEnum;
 
 public enum Seasons {
 	WINTER(92), SPRING(91), SUMMER(300), AUTUMN(150);
