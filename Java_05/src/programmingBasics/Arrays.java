@@ -3,6 +3,8 @@ package programmingBasics;
 public class Arrays {
 
 	public static void main(String[] args) {
+		int[] anArray = { 100, 200, 300 };
+		Arrays.invert(anArray);
 		// System.out.println("Make your decision");
 		// try (Scanner scanner = new Scanner(System.in)) {
 		// byte choice = scanner.nextByte();
@@ -67,5 +69,15 @@ public class Arrays {
 		// }
 
 	}// main
+
+	public static void invert(int[] data) {
+		System.out.println("data: " + data);
+		for (int k = 0; k < data.length / 2; k++) {
+			int temp = data[k];
+			data[k] = data[data.length - k - 1];
+			data[data.length - k - 1] = temp;
+		}
+		System.out.println("invert(): " + java.util.Arrays.toString(data));
+	}
 
 }// class
