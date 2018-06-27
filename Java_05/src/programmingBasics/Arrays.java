@@ -70,7 +70,7 @@ public class Arrays {
 
 	}// main
 
-	public static void invert(int[] data) {
+	public static int[] invert(int[] data) {
 		System.out.println("data: " + data);
 		for (int k = 0; k < data.length / 2; k++) {
 			int temp = data[k];
@@ -78,6 +78,8 @@ public class Arrays {
 			data[data.length - k - 1] = temp;
 		}
 		System.out.println("invert(): " + java.util.Arrays.toString(data));
+
+		return data;
 	}
 
 }// class
